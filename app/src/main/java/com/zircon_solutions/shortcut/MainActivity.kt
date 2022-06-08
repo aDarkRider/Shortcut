@@ -23,11 +23,8 @@ class MainActivity : AppCompatActivity() {
                 mBinding.phone.requestFocus()
             } else {
                 try {
-                    val waIntent = Intent(Intent.ACTION_SENDTO)
-                    waIntent.type = "text/plain"
-//                    waIntent.setPackage("com.whatsapp")
-                    waIntent.setPackage("com.whatsapp.w4b")
-                    waIntent.data = Uri.parse("smsto: $phone")
+                    val uri = Uri.parse("https://api.whatsapp.com/send?phone=${phone}")
+                    val waIntent = Intent(Intent.ACTION_VIEW).setData(uri)
                     startActivity(waIntent)
                     mBinding.phone.setText("")
                 } catch (e: Exception) {
